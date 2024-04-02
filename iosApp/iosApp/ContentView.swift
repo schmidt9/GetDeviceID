@@ -8,7 +8,7 @@ struct ContentView: View {
             Image(systemName: "swift")
                 .font(.system(size: 200))
                 .foregroundColor(.accentColor)
-            Text("Device ID: \(Platform_nativeKt.getDeviceId())")
+            Text("Device ID: \(Platform_iosKt.getDeviceId())")
         }
         .transition(.move(edge: .top).combined(with: .opacity))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

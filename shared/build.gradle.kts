@@ -37,8 +37,10 @@ kotlin {
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
+        val projectName = project.rootProject.name
+
         iosTarget.binaries.framework {
-            baseName = "Shared"
+            baseName = projectName
             isStatic = true
         }
     }
@@ -50,6 +52,11 @@ kotlin {
         summary = projectName
         homepage = "https://example.com"
         name = projectName
+
+        framework {
+            isStatic = false
+            baseName = projectName
+        }
 
         // If 'Sync Now' command fails on :app:podGenIOS task,
         // run manually ./gradlew :app:podGenIOS in Terminal
