@@ -1,25 +1,16 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop.
+# GetDeviceID
+Kotlin Compose Multiplatform project to check possibilities for unique device id generation on different platforms. 
+Following approaches were used:
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+* Android
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+  `Secure.ANDROID_ID`, result seems to be reliable, but not recommended by Google
+* iOS
 
-* `/shared` is for the code that will be shared between all targets in the project.
-  The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
-
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
-
-**Note:** Compose/Web is Experimental and may be changed at any time. Use it only for evaluation purposes.
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
-
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+  `FCUUID` library (https://github.com/fabiocaccamo/FCUUID), result seems to be reliable with some minor restrictions like system reset (see https://github.com/fabiocaccamo/FCUUID?tab=readme-ov-file#persistence)
+* JVM
+  
+  `OSHI` library (https://github.com/oshi/oshi), generation based on hardware info, code taken from https://stackoverflow.com/a/37705082/3004003. The method seems to be less reliable compared to Android and iOS (just subjectively, based on opinions https://stackoverflow.com/questions/1986732/how-to-get-a-unique-computer-identifier-in-java-like-disk-id-or-motherboard-id) 
+* WASM
+  
+  random UUID generation using JavaScript `window.crypto.randomUUID()` method. Result is stored using `localStorage` and reused. The most unreliable method among all platforms, but it seems to be no reliable way to get something better due to browser restrictions.
