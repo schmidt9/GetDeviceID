@@ -1,3 +1,3 @@
 actual fun getDeviceId(context: Any?): String {
-    return "wasm test"
+    return "getting device id with wasm not implemented"
 }

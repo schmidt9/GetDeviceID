@@ -23,7 +23,6 @@ fun App(context: Any? = null) {
             AnimatedVisibility(true) {
                 val deviceId = remember { getDeviceId(context) }
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Device ID: $deviceId")
                 }
             }

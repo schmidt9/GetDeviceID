@@ -5,9 +5,6 @@ import Shared
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "swift")
-                .font(.system(size: 200))
-                .foregroundColor(.accentColor)
             Text("Device ID: \(Platform_iosKt.getDeviceId())")
         }
         .transition(.move(edge: .top).combined(with: .opacity))
