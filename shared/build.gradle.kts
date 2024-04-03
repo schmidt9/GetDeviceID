@@ -65,8 +65,8 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            // put your Multiplatform dependencies here
+        jvmMain.dependencies {
+            implementation(libs.oshi.core)
         }
     }
 }
