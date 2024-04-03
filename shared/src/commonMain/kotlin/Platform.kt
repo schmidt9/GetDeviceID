@@ -1,1 +1,1 @@
-expect fun getDeviceId(): String
+expect fun getDeviceId(context: Any? = null): String

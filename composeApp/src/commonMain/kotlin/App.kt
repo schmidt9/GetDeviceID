@@ -17,14 +17,14 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
-fun App() {
+fun App(context: Any? = null) {
     MaterialTheme {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             AnimatedVisibility(true) {
-                val deviceId = remember { getDeviceId() }
+                val deviceId = remember { getDeviceId(context) }
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $deviceId")
+                    Text("Device ID: $deviceId")
                 }
             }
         }

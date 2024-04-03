@@ -1,11 +1,7 @@
-import android.os.Build
+import android.content.Context
+import android.provider.Settings.Secure
 
-class AndroidPlatform : Platform {
-    override val name: String = "Android ${Build.VERSION.SDK_INT}"
-}
-
-actual fun getPlatform(): Platform = AndroidPlatform()
-
-actual fun getDeviceId(): String {
-    return "android test"
+actual fun getDeviceId(context: Any?): String {
+    val appContext = context as Context
+    return Secure.getString(appContext.getContentResolver(), Secure.ANDROID_ID);
 }
